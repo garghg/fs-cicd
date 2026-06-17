@@ -17,4 +17,4 @@ jobs:
           date
       - name: contents
         run: |
-          ls
+          ls -l
