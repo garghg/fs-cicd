@@ -5,15 +5,24 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig([
   {
+    ignores: ["dist/"]
+  },
+  {
     files: ["**/*.{js,mjs,cjs,jsx}"],
     plugins: { js },
     extends: ["js/recommended"],
     languageOptions: { globals: globals.browser },
   },
-  { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
   pluginReact.configs.flat.recommended,
   {
-    files: ["jest.setup.js"],
+    files: ["app.js", "jest.setup.js", "playwright.config.js", "webpack.config.js"],
     languageOptions: { globals: globals.node },
+  },
+  {
+    files: ["test/**"],
+    languageOptions: { globals: globals.jest },
+  },
+  {
+    rules: { "react/prop-types": "off" },
   },
 ]);
