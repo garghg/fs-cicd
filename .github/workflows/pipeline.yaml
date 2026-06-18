@@ -25,12 +25,6 @@ jobs:
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
         run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
-      - name: Debug context
-        run: |
-          echo "Actor: ${{ github.actor }}"
-          echo "Head commit message: ${{ github.event.head_commit.message }}"
-          echo "Head commit author: ${{ github.event.head_commit.author.username }}"
-          echo "Event name: ${{ github.event_name }}"
       - name: Discord success
         if: success()
         uses: sarisia/actions-status-discord@v1.16.0
@@ -43,8 +37,8 @@ jobs:
           description: |
             **Deployment Details**
             **Commit:** ${{ github.sha }}
-            **Message:** ${{ github.event.head_commit.message }}
-            **Author:** ${{ github.event.head_commit.author.username }}
+            **Message:** ${{ github.event.pull_request.title }}
+            **Author:** ${{ github.actor }}
 
       - name: Discord failure
         if: failure()
@@ -59,8 +53,8 @@ jobs:
             **Repository:** ${{ github.repository }}
             **Branch:** ${{ github.ref_name }}
             **Commit:** ${{ github.sha }}
-            **Message:** ${{ github.event.head_commit.message }}
-            **Author:** ${{ github.event.head_commit.author.username }}
+            **Message:** ${{ github.event.pull_request.title }}
+            **Author:** ${{ github.actor }}
             **Workflow:** ${{ github.workflow }}
             **Job:** ${{ github.job }}
   tag_release:
