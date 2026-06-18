@@ -46,7 +46,7 @@ jobs:
             **Deployment Details**
             **Commit:** ${{ github.sha }}
             **Message:** ${{ github.event.head_commit.message }}
-            **Author:** ${{ github.event.head_commit.user }}
+            **Author:** ${{ github.event.head_commit.name }}
   notify_failure:
     needs: [deploy, build_and_test]
     if: ${{ always() && (needs.build_and_test.result == 'failure' || needs.deploy.result == 'failure')}}
@@ -64,7 +64,7 @@ jobs:
             **Repository:** ${{ github.repository }}
             **Branch:** ${{ github.ref_name }}
             **Commit:** ${{ github.sha }}
-            **Message:** ${{ github.event.pull_request.title }}
+            **Message:** ${{ github.event.head_commit.message }}
             **Author:** ${{ github.actor }}
             **Workflow:** ${{ github.workflow }}
             **Job:** ${{ github.job }}
