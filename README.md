@@ -4,6 +4,7 @@ This repository is used for the CI/CD module of the Full Stack Open course.
 
 ## Deployment
 Deployed link: [Pokedex App](https://pokedex-02xj.onrender.com/)
+Ex-11.21 link: [Anecdotes App](https://fs-anecdotes.onrender.com/)
 
 ## Commands
 
